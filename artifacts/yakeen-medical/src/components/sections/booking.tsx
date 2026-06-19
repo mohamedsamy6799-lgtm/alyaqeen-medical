@@ -8,7 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 import { Calendar, PhoneCall } from "lucide-react";
-import { useCreateBooking } from "@workspace/api-client-react";
+import { createBooking } from "@workspace/api-client-react";
 
 const formSchema = z.object({
   name: z.string().min(3, "الاسم يجب أن يكون 3 أحرف على الأقل"),
@@ -19,56 +19,41 @@ const formSchema = z.object({
 
 export function Booking() {
   const { toast } = useToast();
-  const createBooking = useCreateBooking();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    defaultValues: {
-      name: "",
-      phone: "",
-      message: "",
-    },
+    defaultValues: { name: "", phone: "", message: "" },
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    createBooking.mutate(
-      { data: { name: values.name, phone: values.phone, service: values.service, message: values.message } },
-      {
-        onSuccess: () => {
-          const lines = [
-            "🏥 *طلب حجز جديد - يقين ميديكال*",
-            "",
-            `👤 *الاسم:* ${values.name}`,
-            `📞 *الهاتف:* ${values.phone}`,
-            `🔧 *الخدمة المطلوبة:* ${values.service}`,
-            values.message ? `💬 *الرسالة:* ${values.message}` : "",
-          ].filter(Boolean).join("\n");
+    const lines = [
+      "🏥 *طلب حجز جديد - يقين ميديكال*",
+      "",
+      `👤 *الاسم:* ${values.name}`,
+      `📞 *الهاتف:* ${values.phone}`,
+      `🔧 *الخدمة المطلوبة:* ${values.service}`,
+      values.message ? `💬 *الرسالة:* ${values.message}` : "",
+    ].filter(Boolean).join("\n");
 
-          const whatsappUrl = `https://wa.me/201008677794?text=${encodeURIComponent(lines)}`;
-          window.open(whatsappUrl, "_blank");
-
-          toast({
-            title: "تم إرسال طلبك بنجاح",
-            description: "سيتم فتح واتساب لإتمام الحجز مع فريقنا.",
-          });
-          form.reset();
-        },
-        onError: () => {
-          toast({
-            title: "خطأ في الإرسال",
-            description: "يرجى المحاولة مرة أخرى أو التواصل معنا مباشرة.",
-            variant: "destructive",
-          });
-        },
-      }
+    window.open(
+      `https://wa.me/201008677794?text=${encodeURIComponent(lines)}`,
+      "_blank"
     );
+
+    createBooking({ name: values.name, phone: values.phone, service: values.service, message: values.message }).catch(() => {});
+
+    toast({
+      title: "تم إرسال طلبك بنجاح",
+      description: "سيتم فتح واتساب لإتمام الحجز مع فريقنا.",
+    });
+    form.reset();
   }
 
   return (
     <section id="booking" className="py-24 bg-primary/5">
       <div className="container mx-auto px-4 md:px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          
+
           <div className="space-y-6">
             <div className="inline-flex items-center justify-center p-3 bg-primary/10 rounded-xl mb-4">
               <Calendar className="h-8 w-8 text-primary" />
@@ -79,7 +64,7 @@ export function Booking() {
             <p className="text-lg text-muted-foreground leading-relaxed">
               نحن هنا لمساعدتك. املأ النموذج وسنقوم بالتواصل معك لتحديد موعد يناسبك لتقديم الاستشارة الطبية وتقييم حالتك.
             </p>
-            
+
             <div className="bg-white dark:bg-[#0D1B2A] border border-border p-6 rounded-2xl shadow-sm mt-8 flex items-center gap-4">
               <div className="bg-green-100 dark:bg-green-900/30 p-4 rounded-full">
                 <PhoneCall className="h-6 w-6 text-green-600 dark:text-green-400" />
@@ -110,7 +95,7 @@ export function Booking() {
                     </FormItem>
                   )}
                 />
-                
+
                 <FormField
                   control={form.control}
                   name="phone"
@@ -124,7 +109,7 @@ export function Booking() {
                     </FormItem>
                   )}
                 />
-                
+
                 <FormField
                   control={form.control}
                   name="service"
@@ -149,7 +134,7 @@ export function Booking() {
                     </FormItem>
                   )}
                 />
-                
+
                 <FormField
                   control={form.control}
                   name="message"
@@ -157,24 +142,24 @@ export function Booking() {
                     <FormItem>
                       <FormLabel className="text-base font-semibold">رسالتك (اختياري)</FormLabel>
                       <FormControl>
-                        <Textarea 
-                          placeholder="اكتب أي تفاصيل إضافية عن حالتك" 
-                          className="min-h-[120px] bg-background resize-none" 
-                          {...field} 
+                        <Textarea
+                          placeholder="اكتب أي تفاصيل إضافية عن حالتك"
+                          className="min-h-[120px] bg-background resize-none"
+                          {...field}
                         />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
-                
-                <Button type="submit" size="lg" className="w-full h-14 text-lg font-bold rounded-xl" disabled={createBooking.isPending}>
-                  {createBooking.isPending ? "جاري الإرسال..." : "احجز الآن"}
+
+                <Button type="submit" size="lg" className="w-full h-14 text-lg font-bold rounded-xl">
+                  احجز الآن
                 </Button>
               </form>
             </Form>
           </div>
-          
+
         </div>
       </div>
     </section>
