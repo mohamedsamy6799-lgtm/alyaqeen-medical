@@ -1,0 +1,38 @@
+uploads = []
+outputs = []
+
+[[generated]]
+id = "iFHhAJC0VmzwU7UWada6n"
+uri = "file://artifacts/yakeen-medical/public/hero.png"
+type = "image"
+title = "Hero prosthetics consultation"
+
+[[generated]]
+id = "ZudYIJ61U4z6ZeGcEvRcM"
+uri = "file://artifacts/yakeen-medical/public/about.png"
+type = "image"
+title = "About medical lab"
+
+[[generated]]
+id = "wE-rF2rP4W3sNF1jOk__3"
+uri = "file://artifacts/yakeen-medical/public/gallery-1.png"
+type = "image"
+title = "Gallery prosthetic limb"
+
+[[generated]]
+id = "d8ZHFTSv2t2jF1iR_9SdV"
+uri = "file://artifacts/yakeen-medical/public/gallery-2.png"
+type = "image"
+title = "Gallery medical devices"
+
+[[generated]]
+id = "oExB3pIEBhAgOhdndObh2"
+uri = "file://artifacts/yakeen-medical/public/gallery-3.png"
+type = "image"
+title = "Gallery rehabilitation"
+
+[[generated]]
+id = "YXZFNh8dejDOysuMWBH29"
+uri = "file://artifacts/yakeen-medical/public/gallery-4.png"
+type = "image"
+title = "Gallery happy patient"

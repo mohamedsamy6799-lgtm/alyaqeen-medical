@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "يقين ميديكال"
+version = "1.0.0"
+id = "artifacts/yakeen-medical"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 22196
+
+[services.development]
+run = "pnpm --filter @workspace/yakeen-medical run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/yakeen-medical", "run", "build" ]
+publicDir = "artifacts/yakeen-medical/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "22196"
+BASE_PATH = "/"

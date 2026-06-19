@@ -1,0 +1,215 @@
+Build a premium Arabic website for "اليقين ميديكال" (Al Yaqeen Medical), a specialized company in prosthetic limbs, orthotic devices, rehabilitation solutions, and mobility support.
+
+Owner:
+أ / محمد أحمد الزغبي
+
+Phone & WhatsApp:
++20 10 08677794
+
+Location:
+Cairo, Egypt
+
+Language:
+Arabic (RTL) with optional English switch.
+
+Style:
+Modern medical, luxury, trustworthy, emotional, professional.
+
+Colors:
+- Medical Blue (#0B5ED7)
+- White
+- Light Gray
+- Soft Cyan accents
+
+The website must look like a leading medical technology company, not a simple clinic website.
+
+==================================
+HOME PAGE
+==================================
+
+Hero Section:
+Headline:
+"نساعدك على استعادة الحركة والثقة والحياة الطبيعية"
+
+Subheadline:
+"حلول متطورة في الأطراف الصناعية والأجهزة التعويضية والتأهيل الحركي بأحدث التقنيات العالمية."
+
+Buttons:
+- احجز استشارة
+- تواصل واتساب
+
+Background:
+Professional prosthetic limb images with elegant overlays.
+
+==================================
+ABOUT US
+==================================
+
+Title:
+من نحن
+
+Content:
+شركة اليقين ميديكال هي شركة متخصصة في تصميم وتركيب الأطراف الصناعية والأجهزة التعويضية وأجهزة التأهيل الحركي باستخدام أحدث التقنيات العالمية، بهدف مساعدة المرضى على استعادة استقلاليتهم وتحسين جودة حياتهم.
+
+Vision:
+أن نكون من الشركات الرائدة في مجال الأطراف الصناعية والتأهيل الطبي في مصر والشرق الأوسط.
+
+Mission:
+تقديم حلول طبية متطورة تجمع بين الجودة والراحة والدقة لتحسين حياة المرضى.
+
+==================================
+SERVICES
+==================================
+
+1. الأطراف الصناعية السفلية
+- تحت الركبة
+- فوق الركبة
+- أطراف رياضية
+
+2. الأطراف الصناعية العلوية
+- اليد الصناعية
+- الذراع الصناعية
+- الأطراف الذكية
+
+3. الأجهزة التعويضية
+- الجبائر الطبية
+- أجهزة دعم الحركة
+- أجهزة تقويم الأطراف
+
+4. التأهيل والمتابعة
+- جلسات تدريب
+- متابعة دورية
+- صيانة وتعديلات
+
+5. الاستشارات الطبية
+
+==================================
+WHY US
+==================================
+
+Section Title:
+لماذا اليقين ميديكال؟
+
+Cards:
+✓ خبرة متخصصة
+✓ أحدث التقنيات العالمية
+✓ متابعة مستمرة بعد التركيب
+✓ تصميم مخصص لكل حالة
+✓ جودة عالية وخامات معتمدة
+✓ دعم وتأهيل كامل للمريض
+
+==================================
+STATISTICS
+==================================
+
+Animated Counters:
+
++1000
+مريض تم خدمته
+
++10
+سنوات خبرة
+
++500
+حالة تأهيل ناجحة
+
+98%
+نسبة رضا العملاء
+
+==================================
+SUCCESS STORIES
+==================================
+
+Create modern testimonial cards.
+
+Examples:
+
+"بعد تركيب الطرف الصناعي رجعت أمارس حياتي بشكل طبيعي."
+— أحد العملاء
+
+"الدعم والمتابعة كانوا ممتازين."
+— عميل
+
+==================================
+GALLERY
+==================================
+
+Create professional gallery section with prosthetic limbs and rehabilitation devices.
+
+Use lightbox effect.
+
+==================================
+BOOKING
+==================================
+
+Online Appointment Form:
+
+الاسم
+رقم الهاتف
+نوع الخدمة
+الرسالة
+
+Button:
+احجز الآن
+
+==================================
+FAQ
+==================================
+
+أسئلة شائعة
+
+ما هي مدة تصنيع الطرف الصناعي؟
+هل يوجد متابعة بعد التركيب؟
+هل يمكن صيانة الطرف الصناعي؟
+ما أنواع الأطراف المتوفرة؟
+
+==================================
+CONTACT
+==================================
+
+اليقين ميديكال
+
+محمد أحمد الزغبي
+
+📞 +20 10 08677794
+
+📍 القاهرة - مصر
+
+Floating WhatsApp Button:
+https://wa.me/201008677794
+
+==================================
+FOOTER
+==================================
+
+Quick Links
+Services
+WhatsApp
+Phone
+Location
+
+Copyright:
+© 2026 Al Yaqeen Medical. All Rights Reserved.
+
+==================================
+TECHNICAL REQUIREMENTS
+==================================
+
+- HTML5
+- CSS3
+- JavaScript
+- RTL Support
+- Mobile First Design
+- SEO Optimized
+- Fast Loading
+- Smooth Animations
+- Modern Icons
+- Responsive on all devices
+- Premium UI/UX
+- Professional Medical Images
+- Sticky Navigation
+- WhatsApp Floating Button
+- Scroll Animations
+- Dark Mode Toggle
+- Google Maps Integration
+- Complete deployment-ready website
