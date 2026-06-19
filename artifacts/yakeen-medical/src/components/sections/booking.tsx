@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -9,6 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 import { Calendar, PhoneCall } from "lucide-react";
+import { useCreateBooking } from "@workspace/api-client-react";
 
 const formSchema = z.object({
   name: z.string().min(3, "الاسم يجب أن يكون 3 أحرف على الأقل"),
@@ -19,7 +19,7 @@ const formSchema = z.object({
 
 export function Booking() {
   const { toast } = useToast();
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const createBooking = useCreateBooking();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -31,29 +31,37 @@ export function Booking() {
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    setIsSubmitting(true);
+    createBooking.mutate(
+      { data: { name: values.name, phone: values.phone, service: values.service, message: values.message } },
+      {
+        onSuccess: () => {
+          const lines = [
+            "🏥 *طلب حجز جديد - يقين ميديكال*",
+            "",
+            `👤 *الاسم:* ${values.name}`,
+            `📞 *الهاتف:* ${values.phone}`,
+            `🔧 *الخدمة المطلوبة:* ${values.service}`,
+            values.message ? `💬 *الرسالة:* ${values.message}` : "",
+          ].filter(Boolean).join("\n");
 
-    const lines = [
-      "🏥 *طلب حجز جديد - يقين ميديكال*",
-      "",
-      `👤 *الاسم:* ${values.name}`,
-      `📞 *الهاتف:* ${values.phone}`,
-      `🔧 *الخدمة المطلوبة:* ${values.service}`,
-      values.message ? `💬 *الرسالة:* ${values.message}` : "",
-    ].filter(Boolean).join("\n");
+          const whatsappUrl = `https://wa.me/201008677794?text=${encodeURIComponent(lines)}`;
+          window.open(whatsappUrl, "_blank");
 
-    const whatsappUrl = `https://wa.me/201008677794?text=${encodeURIComponent(lines)}`;
-
-    setTimeout(() => {
-      setIsSubmitting(false);
-      window.open(whatsappUrl, "_blank");
-      toast({
-        title: "تم إرسال طلبك بنجاح",
-        description: "سيتم فتح واتساب لإتمام الحجز مع فريقنا.",
-        variant: "default",
-      });
-      form.reset();
-    }, 800);
+          toast({
+            title: "تم إرسال طلبك بنجاح",
+            description: "سيتم فتح واتساب لإتمام الحجز مع فريقنا.",
+          });
+          form.reset();
+        },
+        onError: () => {
+          toast({
+            title: "خطأ في الإرسال",
+            description: "يرجى المحاولة مرة أخرى أو التواصل معنا مباشرة.",
+            variant: "destructive",
+          });
+        },
+      }
+    );
   }
 
   return (
@@ -160,8 +168,8 @@ export function Booking() {
                   )}
                 />
                 
-                <Button type="submit" size="lg" className="w-full h-14 text-lg font-bold rounded-xl" disabled={isSubmitting}>
-                  {isSubmitting ? "جاري الإرسال..." : "احجز الآن"}
+                <Button type="submit" size="lg" className="w-full h-14 text-lg font-bold rounded-xl" disabled={createBooking.isPending}>
+                  {createBooking.isPending ? "جاري الإرسال..." : "احجز الآن"}
                 </Button>
               </form>
             </Form>
