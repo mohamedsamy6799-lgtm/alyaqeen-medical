@@ -32,16 +32,28 @@ export function Booking() {
 
   function onSubmit(values: z.infer<typeof formSchema>) {
     setIsSubmitting(true);
-    // Simulate API call
+
+    const lines = [
+      "🏥 *طلب حجز جديد - يقين ميديكال*",
+      "",
+      `👤 *الاسم:* ${values.name}`,
+      `📞 *الهاتف:* ${values.phone}`,
+      `🔧 *الخدمة المطلوبة:* ${values.service}`,
+      values.message ? `💬 *الرسالة:* ${values.message}` : "",
+    ].filter(Boolean).join("\n");
+
+    const whatsappUrl = `https://wa.me/201008677794?text=${encodeURIComponent(lines)}`;
+
     setTimeout(() => {
       setIsSubmitting(false);
+      window.open(whatsappUrl, "_blank");
       toast({
-        title: "تم استلام طلبك بنجاح",
-        description: "سيتواصل معك أحد ممثلينا في أقرب وقت ممكن لتأكيد الموعد.",
+        title: "تم إرسال طلبك بنجاح",
+        description: "سيتم فتح واتساب لإتمام الحجز مع فريقنا.",
         variant: "default",
       });
       form.reset();
-    }, 1500);
+    }, 800);
   }
 
   return (
